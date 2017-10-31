@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/albatros13/game-21" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ajaxBackend">ajaxBackend</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mockupBackend">mockupBackend</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/BankHandPanel.js~BankHandPanel.html">BankHandPanel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/Game21Module.js~Game21Module.html">Game21Module</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/Game21Module.js~Game21Widget.html">Game21Widget</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/HandPanel.js~HandPanel.html">HandPanel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/PlayerModule.js~PlayerModule.html">PlayerModule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/PlayerModule.js~PlayerWidget.html">PlayerWidget</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">model</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/model/BankHand.js~BankHand.html">BankHand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/model/Card.js~Card.html">Card</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/model/Deck.js~Deck.html">Deck</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/model/Game.js~Game.html">Game</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/model/Hand.js~Hand.html">Hand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/model/Player.js~Player.html">Player</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-suits">suits</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-values">values</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Command">Command</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">test-app</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/test-app/app.js~TestApp.html">TestApp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/test-app/app.js~TestAppModule.html">TestAppModule</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="game-21">Game-21</h1>
+<p>Twenty-one is a game of chance. The chance of winning is based on the cards dealt by the program. The game is similar to Blackjack, but differs in some areas, so please read this section carefully.</p>
+<p></p><h2>Rules</h2>
+
+<p></p>
+<p>All players in the game place their bets after receiving their first card. Once everyone has placed their bets, the participants get a second card.</p>
+<p>One by one, the players of the game get the opportunity to play. Each play, the players have the option to &#x2018;stand&#x2019; (hold your total and end your turn), &#x2018;hit&#x2019; (ask for a card to bring your points as close as possible to 21), or perform special actions (here only &#x2018;split&#x2019;). If a player has more than 21 points in his hand, he is &#x2018;bust&#x2019;, and his bets are lost.</p>
+<p>If all players are ready (stand or bust) the bank must play (only if there are players who are not bust). The rules for the bank are simple: The bank must hit when it has a total of 16 points or less and must stand with a total of 17 points or more. When the bank and player have the same number of points, the bank wins. If the bank has more than 21 points, the bank is bust and all players that are standing, win.</p>
+<p>When a player gets two identical cards, he can choose to &#x2018;split&#x2019;. This means that the cards are placed next to each other on the table and the player can play twice, one game per card.</p>
+<p>The number of points for the cards is as follows:</p>
+<p><ul>
+    <li>King 3 points, queen 2 points, jack 1 point.
+    </li><li>Ace is 1 or 11 points of your choice.
+    </li><li>Cards 2 to 10 have their normal point value.
+    </li><li>The &#x2018;suit&#x2019; of the card is not important.
+    </li><li>The Joker does not play
+</li></ul>
+Note that the game cards must be pre-shuffled and that you cannot have more than 3 players per deck (for more players you will need more than one deck).
+
+</p><h2>Implementation</h2>
+
+The current prototype models the game rules with the classes in the folder &apos;model&apos;.
+Independent instances of the game model can be used by the game server and by each client app (player widget).
+Folder &apos;components&apos; shows angular components to visualize the status of the game on server as well as panels for each player 
+to interact with the game-server. 
+
+The test-app shows both the game and the panels for all players on one-page app for illustration and testing purposes.
+A simple implementation of the game-server mockup in done in the &apos;mockupBackend.js&apos;.
+To communicate with actual server, this mockup file would be replaced with REST API client as shown &apos;ajaxBackend&apos; 
+(I skipped the design of the actual interface and server side as it requires more 
+ time than I am willing to spend on the first assignment without initial feedback on the overall game design).
+
+<h3>Assumptions</h3>
+<ul>
+    <li>When a player gets a card that allows him to split but this card leads to the total score of &gt; 21, the player is considered bust
+</li></ul>
+
+<p></p>
+<p></p><h3>Build instructions</h3>
+Run<p></p>
+<p><ul>
+    <li> <code>npm install</code> to install all the dependencies
+    </li><li><code>npm run build</code> to compile the code
+</li></ul>
+</p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

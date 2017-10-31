@@ -1,0 +1,4040 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "name": "src/ajaxBackend.js",
+    "content": "import {Command} from './model/Command';\r\n\r\nexport default ({ajax: ajx, baseURL: burl}) => {\r\n    // const ajax    = (...args) => Promise.resolve(ajx(...args)), baseURL = burl;\r\n    //\r\n    // /* the interface to enable communication with server */\r\n    // const backend = {\r\n    //     /**\r\n    //      * @param obj - player object\r\n    //      * @returns {Promise.<*>}\r\n    //      */\r\n    //     async commit_new(obj) {\r\n    //         return await ajax({\r\n    //             url:    `${baseURL}/${obj.class}`,\r\n    //             method: 'POST',\r\n    //             contentType: 'application/json',\r\n    //             data:   JSON.stringify(obj)\r\n    //         });\r\n    //     },\r\n    //     /**\r\n    //      * @param address - player address\r\n    //      * @param obj - new player object\r\n    //      * @returns {Promise.<*>}\r\n    //      */\r\n    //     async commit_update(address, obj) {\r\n    //         return await ajax({\r\n    //             url:  `${baseURL}/${address.class}/${address.id}`,\r\n    //             method: 'POST',\r\n    //             contentType: 'application/json',\r\n    //             data:   JSON.stringify(obj)\r\n    //         });\r\n    //     },\r\n    //     async commit_command(command, player, handIndex){\r\n    //         let response = await ajax({\r\n    //             url:  `${baseURL}/${player.game.class}/${player.game.id}/${command}`,\r\n    //             method: 'GET',\r\n    //             contentType: 'application/json'\r\n    //         });\r\n    //         if (command === Command.HIT){\r\n    //             player[handIndex].addCard(response.card);\r\n    //         }\r\n    //         //Save player\r\n    //         let response2 = await ajax({\r\n    //             url:  `${baseURL}/${player.class}/${player.id}`,\r\n    //             method: 'POST',\r\n    //             contentType: 'application/json',\r\n    //             data:   JSON.stringify(player)\r\n    //         });\r\n    //         //Check response2 for game status/results\r\n    //     }\r\n    // };\r\n    // return {backend};\r\n};\r\n\r\n",
+    "static": true,
+    "longname": "src/ajaxBackend.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 1,
+    "kind": "function",
+    "name": "ajaxBackend",
+    "memberof": "src/ajaxBackend.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ajaxBackend.js~ajaxBackend",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/ajaxBackend.js",
+    "importStyle": "ajaxBackend",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "objectPattern",
+        "types": [
+          "{\"ajax\": *, \"baseURL\": *}"
+        ],
+        "defaultRaw": {
+          "ajax": null,
+          "baseURL": null
+        },
+        "defaultValue": "{\"ajax\":null,\"baseURL\":null}"
+      }
+    ]
+  },
+  {
+    "__docId__": 2,
+    "kind": "file",
+    "name": "src/components/BankHandPanel.js",
+    "content": "import {Component, Input} from '@angular/core';\r\n\r\n@Component({\r\n    selector: 'bank-panel',\r\n    template:`\r\n        <div class=\"panel\" [ngClass]=_panelClass>\r\n            <div class=\"panel-heading\">Bank\r\n                <div class=\"status pull-right\">{{hand.getScore()}}</div>\r\n            </div>\r\n            <div class=\"panel-body\">\r\n                <span [innerHTML]=\"hand.htmlCards | safeHTML\"></span>\r\n            </div>\r\n        </div>\r\n    `,\r\n    styles: [``]\r\n})\r\nexport class BankHandPanel{\r\n    @Input()  hand;\r\n\r\n    /**\r\n     * Style panel to reflect hand status\r\n     * @returns {string}\r\n     * @private\r\n     */\r\n    get _panelClass(){\r\n        return this.hand.isReady? (this.hand.isBust? \"panel-danger\": \"panel-warning\"): \"panel-success\";\r\n    }\r\n}\r\n\r\n\r\n",
+    "static": true,
+    "longname": "src/components/BankHandPanel.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 3,
+    "kind": "class",
+    "name": "BankHandPanel",
+    "memberof": "src/components/BankHandPanel.js",
+    "static": true,
+    "longname": "src/components/BankHandPanel.js~BankHandPanel",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/components/BankHandPanel.js",
+    "importStyle": "{BankHandPanel}",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "decorators": [
+      {
+        "name": "Component",
+        "arguments": "({\n  selector: 'bank-panel',\n  template: `\n        <div class=\"panel\" [ngClass]=_panelClass>\n            <div class=\"panel-heading\">Bank\n                <div class=\"status pull-right\">{{hand.getScore()}}</div>\n            </div>\n            <div class=\"panel-body\">\n                <span [innerHTML]=\"hand.htmlCards | safeHTML\"></span>\n            </div>\n        </div>\n    `,\n  styles: [``]\n})"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 4,
+    "kind": "member",
+    "name": "hand",
+    "memberof": "src/components/BankHandPanel.js~BankHandPanel",
+    "static": false,
+    "longname": "src/components/BankHandPanel.js~BankHandPanel#hand",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "decorators": [
+      {
+        "name": "Input",
+        "arguments": "()"
+      }
+    ]
+  },
+  {
+    "__docId__": 5,
+    "kind": "get",
+    "name": "_panelClass",
+    "memberof": "src/components/BankHandPanel.js~BankHandPanel",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/components/BankHandPanel.js~BankHandPanel#_panelClass",
+    "access": "private",
+    "description": "Style panel to reflect hand status",
+    "lineNumber": 25,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 6,
+    "kind": "file",
+    "name": "src/components/Game21Module.js",
+    "content": "import {NgModule, Component, Input, Output, EventEmitter} from '@angular/core';\r\nimport {CommonModule} from '@angular/common';\r\nimport {FormsModule}  from '@angular/forms';\r\nimport {Command} from '../model/Command';\r\nimport {BankHandPanel} from './BankHandPanel';\r\nimport {PlayerModule} from './PlayerModule';\r\n\r\n@Component({\r\n    selector: 'game21-widget',\r\n    template:`\r\n        <div class=\"panel panel-info\">\r\n            <div class=\"panel-heading\"> Game {{game.id}}</div>\r\n            <div class=\"panel-body\">\r\n                <div class=\"state\"><label >Dealt: </label>\r\n                    <span [innerHTML]=\"game.deck.htmlDealtCards | safeHTML\"></span>\r\n                </div>\r\n                <div class=\"input-control input-control-lg\">\r\n                    <bank-panel [hand]=\"game.bank\"></bank-panel>\r\n                </div>\r\n                <button type=\"button\" \r\n                     [disabled]=\"!game.isReadyToStart\" (click)=\"_startGame()\">Start game\r\n                </button>\r\n                <div *ngIf=\"game.isFinished\"><label>Winners: </label>{{game.printWinners()}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n    `\r\n    ,\r\n    styles: [``]\r\n})\r\n/**\r\n * Game-21 widget\r\n */\r\nexport class Game21Widget{\r\n    @Input() game;\r\n\r\n    /**\r\n     * Start game, deal initial\r\n     * @private\r\n     */\r\n    _startGame(){\r\n        this.game.dealInitial();\r\n    }\r\n}\r\n/**\r\n *  Module that provides Game-21 widget\r\n */\r\n@NgModule({\r\n    imports:      [\r\n        CommonModule,\r\n        FormsModule,\r\n        PlayerModule\r\n    ],\r\n    declarations: [ Game21Widget, BankHandPanel],\r\n    exports:      [ Game21Widget ]\r\n})\r\nexport class Game21Module {}\r\n\r\n\r\n",
+    "static": true,
+    "longname": "src/components/Game21Module.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 7,
+    "kind": "class",
+    "name": "Game21Widget",
+    "memberof": "src/components/Game21Module.js",
+    "static": true,
+    "longname": "src/components/Game21Module.js~Game21Widget",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/components/Game21Module.js",
+    "importStyle": "{Game21Widget}",
+    "description": "Game-21 widget",
+    "lineNumber": 34,
+    "decorators": [
+      {
+        "name": "Component",
+        "arguments": "({\n  selector: 'game21-widget',\n  template: `\n        <div class=\"panel panel-info\">\n            <div class=\"panel-heading\"> Game {{game.id}}</div>\n            <div class=\"panel-body\">\n                <div class=\"state\"><label >Dealt: </label>\n                    <span [innerHTML]=\"game.deck.htmlDealtCards | safeHTML\"></span>\n                </div>\n                <div class=\"input-control input-control-lg\">\n                    <bank-panel [hand]=\"game.bank\"></bank-panel>\n                </div>\n                <button type=\"button\" \n                     [disabled]=\"!game.isReadyToStart\" (click)=\"_startGame()\">Start game\n                </button>\n                <div *ngIf=\"game.isFinished\"><label>Winners: </label>{{game.printWinners()}}\n                </div>\n            </div>\n        </div>\n    `,\n  styles: [``]\n})"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 8,
+    "kind": "member",
+    "name": "game",
+    "memberof": "src/components/Game21Module.js~Game21Widget",
+    "static": false,
+    "longname": "src/components/Game21Module.js~Game21Widget#game",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "decorators": [
+      {
+        "name": "Input",
+        "arguments": "()"
+      }
+    ]
+  },
+  {
+    "__docId__": 9,
+    "kind": "method",
+    "name": "_startGame",
+    "memberof": "src/components/Game21Module.js~Game21Widget",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/components/Game21Module.js~Game21Widget#_startGame",
+    "access": "private",
+    "description": "Start game, deal initial",
+    "lineNumber": 41,
+    "params": []
+  },
+  {
+    "__docId__": 10,
+    "kind": "class",
+    "name": "Game21Module",
+    "memberof": "src/components/Game21Module.js",
+    "static": true,
+    "longname": "src/components/Game21Module.js~Game21Module",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/components/Game21Module.js",
+    "importStyle": "{Game21Module}",
+    "description": " Module that provides Game-21 widget",
+    "lineNumber": 57,
+    "decorators": [
+      {
+        "name": "NgModule",
+        "arguments": "({\n  imports: [CommonModule, FormsModule, PlayerModule],\n  declarations: [Game21Widget, BankHandPanel],\n  exports: [Game21Widget]\n})"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 11,
+    "kind": "file",
+    "name": "src/components/HandPanel.js",
+    "content": "import {Component, Input, Output, EventEmitter} from '@angular/core';\r\nimport {Command} from '../model/Command';\r\n\r\n@Component({\r\n    selector: 'hand-panel',\r\n    template:`\r\n        <div class=\"panel\" [ngClass]=_panelClass>\r\n            <div panel-heading>\r\n                <label>{{hand.index + 1}} </label> \r\n                <span *ngIf=\"hand.parentHand\">split of {{hand.parentHand.index + 1}}</span>\r\n                <div class=\"status pull-right\">{{hand.getScore()}}</div>\r\n            </div>\r\n            <div class=\"panel-body\">\r\n                <div class=\"state\">\r\n                    <span [innerHTML]=\"hand.htmlCards | safeHTML\"></span>\r\n                </div>\r\n                <button type=\"button\" class=\"btn btn-default btn-icon\"\r\n                        [disabled]=\"!hand.canHit\" (click)=\"_onCommand(Command.HIT)\">\r\n                    <img class=\"imtip\" src=\"../images/hit.png\"/>\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-default btn-icon\"\r\n                        [disabled]=\"!hand.canStand\" (click)=\"_onCommand(Command.STAND)\">\r\n                    <img class=\"imtip\" src=\"../images/stand.png\"/>\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-default btn-icon\"\r\n                        [disabled]=\"!hand.canSplit\" (click)=\"_onCommand(Command.SPLIT)\">\r\n                    <img class=\"imtip\" src=\"../images/split.png\"/>\r\n                </button>\r\n            </div>\r\n        </div>\r\n    `,\r\n    styles: [`\r\n        :host >>> .imtip {\r\n            position: relative;\r\n            height: 32px;\r\n        }\r\n    `]\r\n})\r\n/**\r\n *\r\n */\r\nexport class HandPanel{\r\n    @Input()  hand;\r\n    @Output() command = new EventEmitter();\r\n    Command = Command;\r\n\r\n    /**\r\n     * Process player's command\r\n     * @param command\r\n     * @private\r\n     */\r\n    _onCommand(command){\r\n        this.hand.addCommand(command);\r\n        this.command.emit({command: command, hand: this.hand});\r\n    }\r\n\r\n    /**\r\n     * Style panel to reflect hand status\r\n     * @returns {string}\r\n     * @private\r\n     */\r\n    get _panelClass(){\r\n        return this.hand.isReady? (this.hand.isBust? \"panel-danger\": \"panel-warning\"): \"panel-success\";\r\n    }\r\n\r\n}\r\n\r\n\r\n",
+    "static": true,
+    "longname": "src/components/HandPanel.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 12,
+    "kind": "class",
+    "name": "HandPanel",
+    "memberof": "src/components/HandPanel.js",
+    "static": true,
+    "longname": "src/components/HandPanel.js~HandPanel",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/components/HandPanel.js",
+    "importStyle": "{HandPanel}",
+    "description": "",
+    "lineNumber": 42,
+    "decorators": [
+      {
+        "name": "Component",
+        "arguments": "({\n  selector: 'hand-panel',\n  template: `\n        <div class=\"panel\" [ngClass]=_panelClass>\n            <div panel-heading>\n                <label>{{hand.index + 1}} </label> \n                <span *ngIf=\"hand.parentHand\">split of {{hand.parentHand.index + 1}}</span>\n                <div class=\"status pull-right\">{{hand.getScore()}}</div>\n            </div>\n            <div class=\"panel-body\">\n                <div class=\"state\">\n                    <span [innerHTML]=\"hand.htmlCards | safeHTML\"></span>\n                </div>\n                <button type=\"button\" class=\"btn btn-default btn-icon\"\n                        [disabled]=\"!hand.canHit\" (click)=\"_onCommand(Command.HIT)\">\n                    <img class=\"imtip\" src=\"../images/hit.png\"/>\n                </button>\n                <button type=\"button\" class=\"btn btn-default btn-icon\"\n                        [disabled]=\"!hand.canStand\" (click)=\"_onCommand(Command.STAND)\">\n                    <img class=\"imtip\" src=\"../images/stand.png\"/>\n                </button>\n                <button type=\"button\" class=\"btn btn-default btn-icon\"\n                        [disabled]=\"!hand.canSplit\" (click)=\"_onCommand(Command.SPLIT)\">\n                    <img class=\"imtip\" src=\"../images/split.png\"/>\n                </button>\n            </div>\n        </div>\n    `,\n  styles: [`\n        :host >>> .imtip {\n            position: relative;\n            height: 32px;\n        }\n    `]\n})"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 13,
+    "kind": "member",
+    "name": "hand",
+    "memberof": "src/components/HandPanel.js~HandPanel",
+    "static": false,
+    "longname": "src/components/HandPanel.js~HandPanel#hand",
+    "access": null,
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "decorators": [
+      {
+        "name": "Input",
+        "arguments": "()"
+      }
+    ]
+  },
+  {
+    "__docId__": 14,
+    "kind": "member",
+    "name": "command",
+    "memberof": "src/components/HandPanel.js~HandPanel",
+    "static": false,
+    "longname": "src/components/HandPanel.js~HandPanel#command",
+    "access": null,
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "decorators": [
+      {
+        "name": "Output",
+        "arguments": "()"
+      }
+    ]
+  },
+  {
+    "__docId__": 15,
+    "kind": "member",
+    "name": "Command",
+    "memberof": "src/components/HandPanel.js~HandPanel",
+    "static": false,
+    "longname": "src/components/HandPanel.js~HandPanel#Command",
+    "access": null,
+    "description": null,
+    "lineNumber": 45,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 16,
+    "kind": "method",
+    "name": "_onCommand",
+    "memberof": "src/components/HandPanel.js~HandPanel",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/components/HandPanel.js~HandPanel#_onCommand",
+    "access": "private",
+    "description": "Process player's command",
+    "lineNumber": 52,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "command",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 17,
+    "kind": "get",
+    "name": "_panelClass",
+    "memberof": "src/components/HandPanel.js~HandPanel",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/components/HandPanel.js~HandPanel#_panelClass",
+    "access": "private",
+    "description": "Style panel to reflect hand status",
+    "lineNumber": 62,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 18,
+    "kind": "file",
+    "name": "src/components/PlayerModule.js",
+    "content": "import {NgModule, Component, Input, Output, EventEmitter} from '@angular/core';\r\nimport {CommonModule} from '@angular/common';\r\nimport {FormsModule}  from '@angular/forms';\r\nimport {HandPanel} from './HandPanel';\r\nimport {Command} from '../model/Command';\r\nimport {SafeHtmlPipe} from './Pipes';\r\n\r\n@Component({\r\n    selector: 'player-panel',\r\n    template:`\r\n        <div class=\"panel\" [ngClass]=_panelClass>\r\n            <div class=\"panel-heading\">{{player.id}}:{{player.name}}\r\n                <div class=\"status pull-right\">{{player.getScore()}}</div>\r\n            </div>\r\n            <div class=\"panel-body\">\r\n                <div class=\"input-control\" *ngFor=\"let hand of player.hands\">\r\n                    <hand-panel [hand]=\"hand\" (command)=\"_onCommand($event)\"></hand-panel>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    `,\r\n    styles: [``]\r\n})\r\n/**\r\n * Game-21 player widget\r\n */\r\nexport class PlayerWidget{\r\n    @Input() player;\r\n    @Output() command = new EventEmitter();\r\n\r\n    /**\r\n     * Process player's command\r\n     * @param command\r\n     * @param hand\r\n     * @private\r\n     */\r\n    _onCommand({command, hand}){\r\n        if (command === Command.SPLIT){\r\n            this.player.split(hand);\r\n        }\r\n        this.command.emit({command: command, player: this.player, hand: hand});\r\n    }\r\n\r\n    /**\r\n     * Style panel to reflect player's status\r\n     * @returns {string}\r\n     * @private\r\n     */\r\n    get _panelClass(){\r\n        return this.player.isReady? (this.player.isBust? \"panel-danger\": \"panel-warning\"): \"panel-success\";\r\n    }\r\n}\r\n\r\n/**\r\n * Module that provides\r\n */\r\n@NgModule({\r\n    imports:      [\r\n        CommonModule,\r\n        FormsModule,\r\n    ],\r\n    declarations: [ PlayerWidget, HandPanel, SafeHtmlPipe],\r\n    exports:      [ PlayerWidget, SafeHtmlPipe]\r\n})\r\nexport class PlayerModule {}\r\n\r\n\r\n\r\n",
+    "static": true,
+    "longname": "src/components/PlayerModule.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 19,
+    "kind": "class",
+    "name": "PlayerWidget",
+    "memberof": "src/components/PlayerModule.js",
+    "static": true,
+    "longname": "src/components/PlayerModule.js~PlayerWidget",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/components/PlayerModule.js",
+    "importStyle": "{PlayerWidget}",
+    "description": "Game-21 player widget",
+    "lineNumber": 27,
+    "decorators": [
+      {
+        "name": "Component",
+        "arguments": "({\n  selector: 'player-panel',\n  template: `\n        <div class=\"panel\" [ngClass]=_panelClass>\n            <div class=\"panel-heading\">{{player.id}}:{{player.name}}\n                <div class=\"status pull-right\">{{player.getScore()}}</div>\n            </div>\n            <div class=\"panel-body\">\n                <div class=\"input-control\" *ngFor=\"let hand of player.hands\">\n                    <hand-panel [hand]=\"hand\" (command)=\"_onCommand($event)\"></hand-panel>\n                </div>\n            </div>\n        </div>\n    `,\n  styles: [``]\n})"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 20,
+    "kind": "member",
+    "name": "player",
+    "memberof": "src/components/PlayerModule.js~PlayerWidget",
+    "static": false,
+    "longname": "src/components/PlayerModule.js~PlayerWidget#player",
+    "access": null,
+    "description": null,
+    "lineNumber": 28,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "decorators": [
+      {
+        "name": "Input",
+        "arguments": "()"
+      }
+    ]
+  },
+  {
+    "__docId__": 21,
+    "kind": "member",
+    "name": "command",
+    "memberof": "src/components/PlayerModule.js~PlayerWidget",
+    "static": false,
+    "longname": "src/components/PlayerModule.js~PlayerWidget#command",
+    "access": null,
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "decorators": [
+      {
+        "name": "Output",
+        "arguments": "()"
+      }
+    ]
+  },
+  {
+    "__docId__": 22,
+    "kind": "method",
+    "name": "_onCommand",
+    "memberof": "src/components/PlayerModule.js~PlayerWidget",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/components/PlayerModule.js~PlayerWidget#_onCommand",
+    "access": "private",
+    "description": "Process player's command",
+    "lineNumber": 37,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "command",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hand",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 23,
+    "kind": "get",
+    "name": "_panelClass",
+    "memberof": "src/components/PlayerModule.js~PlayerWidget",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/components/PlayerModule.js~PlayerWidget#_panelClass",
+    "access": "private",
+    "description": "Style panel to reflect player's status",
+    "lineNumber": 49,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 24,
+    "kind": "class",
+    "name": "PlayerModule",
+    "memberof": "src/components/PlayerModule.js",
+    "static": true,
+    "longname": "src/components/PlayerModule.js~PlayerModule",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/components/PlayerModule.js",
+    "importStyle": "{PlayerModule}",
+    "description": "Module that provides",
+    "lineNumber": 65,
+    "decorators": [
+      {
+        "name": "NgModule",
+        "arguments": "({\n  imports: [CommonModule, FormsModule],\n  declarations: [PlayerWidget, HandPanel, SafeHtmlPipe],\n  exports: [PlayerWidget, SafeHtmlPipe]\n})"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 25,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "export {Game21Module} from './components/Game21Module.js';\r\n",
+    "static": true,
+    "longname": "src/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 26,
+    "kind": "file",
+    "name": "src/libs/jquery.js",
+    "content": "import $ from 'jquery';\r\nexport default $;\r\nwindow.$ = $;\r\nwindow.jQuery = $;\r\n\r\n\r\n",
+    "static": true,
+    "longname": "src/libs/jquery.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 27,
+    "kind": "file",
+    "name": "src/libs/rxjs.js",
+    "content": "import Rx from 'rxjs';\r\nglobal.Rx = Rx;\r\n\r\n",
+    "static": true,
+    "longname": "src/libs/rxjs.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 28,
+    "kind": "file",
+    "name": "src/mockupBackend.js",
+    "content": "import {\r\n    parseInt,\r\n    cloneDeep,\r\n    assign,\r\n    uniqueId\r\n} from 'lodash-bound';\r\nimport {Game} from './model/Game.js';\r\nimport {Command} from './model/Command';\r\n\r\n/* simple storage implementation */\r\nexport const mockupBackend = () => {\r\n    const game = new Game();\r\n\r\n    /* the interface to hand to the library when instantiating a module */\r\n    const backend = {\r\n        async commit_new(player) {\r\n            player.id = uniqueId()::parseInt();\r\n            game.addPlayer(player);\r\n            return player;\r\n        },\r\n        async commit_update(address, player) {\r\n            game.players[address.id - 1]::assign(player);\r\n            return player;\r\n        },\r\n        async commit_command(command, player, handIndex){\r\n            if (command === Command.HIT){\r\n                let card = game.deck.dealCard();\r\n                player.hands[handIndex].addCard(card);\r\n            }\r\n            game.players[player.id - 1]::assign(player);\r\n\r\n            //Simulates bank playing\r\n            if (game.allPlayersReady){\r\n                while (game.bank.mustHit){\r\n                    let card = game.dealCard();\r\n                    game.bank.addCard(card);\r\n                    game.bank.addCommand(Command.HIT);\r\n                }\r\n                if (game.bank.mustStand){\r\n                    game.bank.addCommand(Command.STAND);\r\n                }\r\n            }\r\n        }\r\n   };\r\n    return { backend, game };\r\n};\r\n",
+    "static": true,
+    "longname": "src/mockupBackend.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 29,
+    "kind": "function",
+    "name": "mockupBackend",
+    "memberof": "src/mockupBackend.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/mockupBackend.js~mockupBackend",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/mockupBackend.js",
+    "importStyle": "{mockupBackend}",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "{\"backend\": *, \"game\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 30,
+    "kind": "file",
+    "name": "src/model/BankHand.js",
+    "content": "import {Command} from './Command';\r\n\r\nexport class BankHand{\r\n    /**\r\n     * Create a new bank hand\r\n     */\r\n    constructor(options = {}){\r\n        this.commands = [];\r\n        this.cards = [];\r\n    }\r\n\r\n    /**\r\n     * determines whether the hand is bust\r\n     * @returns {boolean}\r\n     */\r\n    get isBust() {\r\n        return this.getScore() > 21;\r\n    }\r\n\r\n    /**\r\n     * Determines whether the current hand is ready\r\n     * @returns {boolean|*}\r\n     */\r\n    get isReady(){\r\n        return this.isBust || this.isStand;\r\n    }\r\n\r\n    /**\r\n     * Determines whether the current hand is stand\r\n     * @returns {boolean}\r\n     */\r\n    get isStand(){\r\n        return ((this.commands.length > 0) && this.commands[this.commands.length - 1] === Command.STAND);\r\n    }\r\n\r\n    /**\r\n     * Indicates whether the bank hand must stand\r\n     * @returns {boolean}\r\n     */\r\n    get mustStand(){\r\n        return this.getScore() >= 17;\r\n    }\r\n\r\n    /**\r\n     * Indicates whether the bank hand must hit\r\n     * @returns {boolean}\r\n     */\r\n    get mustHit(){\r\n        return this.getScore() < 17;\r\n    }\r\n\r\n    /**\r\n     * Prints cards in the hand in the right color\r\n     * @returns {string}\r\n     */\r\n    get htmlCards(){\r\n        return this.cards.map(x => x.html).join(\", \");\r\n    }\r\n\r\n    /**\r\n     * Add card to the hand\r\n     * @param card\r\n     */\r\n    addCard(card){\r\n        this.cards.push(card);\r\n    }\r\n\r\n    /**\r\n     * Registers a command (hit, stand or split) on the hand\r\n     * @param command\r\n     */\r\n    addCommand(command){\r\n        this.commands.push(command);\r\n    }\r\n\r\n    /**\r\n     * Compute overall score as sum of all cards in the hand\r\n     * @returns {number} hand score\r\n     */\r\n    getScore() {\r\n        let score = this.cards.reduce((score, card) => score + card.score, 0);\r\n        // Reduce each Ace score from 11 to 1 if necessary\r\n        this.cards.filter(c => c.value === 'A').forEach(c => { if (score > 21) { score -= 10; }});\r\n        return score;\r\n    }\r\n\r\n    /**\r\n     * JSON object to store essential properties of the current object\r\n     * @returns {{index: *, commands: Array, cards: Array, class}}\r\n     */\r\n    toJSON(){\r\n        return {\r\n            index       : this.index,\r\n            commands    : this.commands,\r\n            cards       : this.cards.map(x => x.toJSON()),\r\n            class       : this.constructor.name\r\n        }\r\n    }\r\n}",
+    "static": true,
+    "longname": "src/model/BankHand.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 31,
+    "kind": "class",
+    "name": "BankHand",
+    "memberof": "src/model/BankHand.js",
+    "static": true,
+    "longname": "src/model/BankHand.js~BankHand",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/model/BankHand.js",
+    "importStyle": "{BankHand}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 32,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#constructor",
+    "access": null,
+    "description": "Create a new bank hand",
+    "lineNumber": 7,
+    "params": [
+      {
+        "name": "options",
+        "optional": true,
+        "types": [
+          "{}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ]
+  },
+  {
+    "__docId__": 33,
+    "kind": "member",
+    "name": "commands",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#commands",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 34,
+    "kind": "member",
+    "name": "cards",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#cards",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 35,
+    "kind": "get",
+    "name": "isBust",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#isBust",
+    "access": null,
+    "description": "determines whether the hand is bust",
+    "lineNumber": 16,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 36,
+    "kind": "get",
+    "name": "isReady",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#isReady",
+    "access": null,
+    "description": "Determines whether the current hand is ready",
+    "lineNumber": 24,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean|*}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean",
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 37,
+    "kind": "get",
+    "name": "isStand",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#isStand",
+    "access": null,
+    "description": "Determines whether the current hand is stand",
+    "lineNumber": 32,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 38,
+    "kind": "get",
+    "name": "mustStand",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#mustStand",
+    "access": null,
+    "description": "Indicates whether the bank hand must stand",
+    "lineNumber": 40,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 39,
+    "kind": "get",
+    "name": "mustHit",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#mustHit",
+    "access": null,
+    "description": "Indicates whether the bank hand must hit",
+    "lineNumber": 48,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 40,
+    "kind": "get",
+    "name": "htmlCards",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#htmlCards",
+    "access": null,
+    "description": "Prints cards in the hand in the right color",
+    "lineNumber": 56,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 41,
+    "kind": "method",
+    "name": "addCard",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#addCard",
+    "access": null,
+    "description": "Add card to the hand",
+    "lineNumber": 64,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "card",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 42,
+    "kind": "method",
+    "name": "addCommand",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#addCommand",
+    "access": null,
+    "description": "Registers a command (hit, stand or split) on the hand",
+    "lineNumber": 72,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "command",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 43,
+    "kind": "method",
+    "name": "getScore",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#getScore",
+    "access": null,
+    "description": "Compute overall score as sum of all cards in the hand",
+    "lineNumber": 80,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{number} hand score"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "hand score"
+    }
+  },
+  {
+    "__docId__": 44,
+    "kind": "method",
+    "name": "toJSON",
+    "memberof": "src/model/BankHand.js~BankHand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/BankHand.js~BankHand#toJSON",
+    "access": null,
+    "description": "JSON object to store essential properties of the current object",
+    "lineNumber": 91,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{{index: *, commands: Array, cards: Array, class}}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "{index: *, commands: Array, cards: Array, class}"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 45,
+    "kind": "file",
+    "name": "src/model/Card.js",
+    "content": "export const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];\r\nexport const suits  = ['♣', '♦', '♥', '♠'];\r\nconst colors = { '♣': 'black', '♦': 'red', '♥': 'red', '♠': 'black' };\r\nconst codes  = { '♠': '\\u2660', '♦': '\\u2666', '♥': '\\u2665', '♣': '\\u2663'};\r\n\r\n/**\r\n * A class that models a playing card\r\n */\r\nexport class Card {\r\n    constructor(value, suit) {\r\n        this.face  = value + codes[suit];\r\n        this.value = value;\r\n        this.suit  = suit;\r\n        this.color = colors[suit];\r\n    }\r\n\r\n    /**\r\n     * Provides game score for each card\r\n     * @returns {*}\r\n     */\r\n    get score() {\r\n        switch (this.value) {\r\n            case 'A'  :\r\n                return 11;\r\n            case 'K' :\r\n                return 3;\r\n            case 'Q':\r\n                return 2;\r\n            case 'J' :\r\n                return 1;\r\n            default:\r\n                return this.value;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * JSON object to store essential properties of the current object\r\n     * @returns {{value: *, suit: *, class}}\r\n     */\r\n    toJSON(){\r\n        return {\r\n            value: this.value,\r\n            suit: this.suit,\r\n            class: this.constructor.name\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Print card face in right color\r\n     * @returns {string} HTML span tag with card face\r\n     */\r\n    get html(){\r\n        return '<span style=\"color: ' + this.color + '\">' + this.face + '</span>';\r\n    }\r\n}\r\n\r\n\r\n",
+    "static": true,
+    "longname": "src/model/Card.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 46,
+    "kind": "variable",
+    "name": "values",
+    "memberof": "src/model/Card.js",
+    "static": true,
+    "longname": "src/model/Card.js~values",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/model/Card.js",
+    "importStyle": "{values}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "number[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 47,
+    "kind": "variable",
+    "name": "suits",
+    "memberof": "src/model/Card.js",
+    "static": true,
+    "longname": "src/model/Card.js~suits",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/model/Card.js",
+    "importStyle": "{suits}",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "string[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 48,
+    "kind": "variable",
+    "name": "colors",
+    "memberof": "src/model/Card.js",
+    "static": true,
+    "longname": "src/model/Card.js~colors",
+    "access": null,
+    "export": false,
+    "importPath": "game-21/src/model/Card.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "{\"♣\": string, \"♦\": string, \"♥\": string, \"♠\": string}"
+      ]
+    }
+  },
+  {
+    "__docId__": 49,
+    "kind": "variable",
+    "name": "codes",
+    "memberof": "src/model/Card.js",
+    "static": true,
+    "longname": "src/model/Card.js~codes",
+    "access": null,
+    "export": false,
+    "importPath": "game-21/src/model/Card.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "{\"♠\": string, \"♦\": string, \"♥\": string, \"♣\": string}"
+      ]
+    }
+  },
+  {
+    "__docId__": 50,
+    "kind": "class",
+    "name": "Card",
+    "memberof": "src/model/Card.js",
+    "static": true,
+    "longname": "src/model/Card.js~Card",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/model/Card.js",
+    "importStyle": "{Card}",
+    "description": "A class that models a playing card",
+    "lineNumber": 9,
+    "interface": false
+  },
+  {
+    "__docId__": 51,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/model/Card.js~Card",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Card.js~Card#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "suit",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "face",
+    "memberof": "src/model/Card.js~Card",
+    "static": false,
+    "longname": "src/model/Card.js~Card#face",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "value",
+    "memberof": "src/model/Card.js~Card",
+    "static": false,
+    "longname": "src/model/Card.js~Card#value",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "member",
+    "name": "suit",
+    "memberof": "src/model/Card.js~Card",
+    "static": false,
+    "longname": "src/model/Card.js~Card#suit",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "member",
+    "name": "color",
+    "memberof": "src/model/Card.js~Card",
+    "static": false,
+    "longname": "src/model/Card.js~Card#color",
+    "access": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "get",
+    "name": "score",
+    "memberof": "src/model/Card.js~Card",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Card.js~Card#score",
+    "access": null,
+    "description": "Provides game score for each card",
+    "lineNumber": 21,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "name": "toJSON",
+    "memberof": "src/model/Card.js~Card",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Card.js~Card#toJSON",
+    "access": null,
+    "description": "JSON object to store essential properties of the current object",
+    "lineNumber": 40,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{{value: *, suit: *, class}}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "{value: *, suit: *, class}"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "get",
+    "name": "html",
+    "memberof": "src/model/Card.js~Card",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Card.js~Card#html",
+    "access": null,
+    "description": "Print card face in right color",
+    "lineNumber": 52,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string} HTML span tag with card face"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": "HTML span tag with card face"
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "file",
+    "name": "src/model/Command.js",
+    "content": "/**\r\n * Game commands available to players\r\n * @type {{HIT: string, STAND: string, SPLIT: string}}\r\n */\r\nexport const Command = {\r\n    HIT  : 'Hit',\r\n    STAND: 'Stand',\r\n    SPLIT: 'Split'\r\n};\r\n\r\n",
+    "static": true,
+    "longname": "src/model/Command.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 60,
+    "kind": "variable",
+    "name": "Command",
+    "memberof": "src/model/Command.js",
+    "static": true,
+    "longname": "src/model/Command.js~Command",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/model/Command.js",
+    "importStyle": "{Command}",
+    "description": "Game commands available to players",
+    "lineNumber": 5,
+    "type": {
+      "nullable": null,
+      "types": [
+        "{HIT: string, STAND: string, SPLIT: string}"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "file",
+    "name": "src/model/Deck.js",
+    "content": "import {suits, values, Card} from './Card.js';\r\n\r\n/**\r\n * A class that models a deck of cards\r\n */\r\nexport class Deck{\r\n    /**\r\n     * Create a new deck\r\n     * @param index - card deck index (relevant for games with many decks)\r\n     */\r\n    constructor(){\r\n        this.index = 0;\r\n        this.reset();\r\n    }\r\n\r\n    /**\r\n     * Instantiate a new shuffled deck\r\n     */\r\n    reset(){\r\n        this.cards = [];\r\n        for (var i = 0; i <= 12; i++) {\r\n            for (var j = 0; j <= 3; j++) {\r\n                let card = new Card(values[i], suits[j]);\r\n                this.cards.push(card);\r\n            }\r\n        }\r\n        //this.shuffle();\r\n        this.dealtIndex = 0;\r\n    }\r\n\r\n    /**\r\n     * Shuffle the deck\r\n     */\r\n    shuffle(){\r\n        for (var i = 0; i < this.cards.length; i++){\r\n            let r = i + Math.floor(Math.random() * (this.cards.length - i));\r\n            let swap = this.cards[i];\r\n            this.cards[i] = this.cards[r];\r\n            this.cards[r] = swap;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Deal a card from the current deck\r\n     * @returns {Card}\r\n     */\r\n    dealCard(){\r\n        if (this.dealtIndex < this.cards.length){\r\n            let card = this.cards[this.dealtIndex];\r\n            this.dealtIndex++;\r\n          return card;\r\n        }\r\n        return null;\r\n    }\r\n\r\n    /**\r\n     * Print cards in the deck in the right color\r\n     * @returns {string}\r\n     */\r\n    get htmlCards(){\r\n        return this.cards.map(x => x.html).join(\", \");\r\n    }\r\n\r\n    /**\r\n     * Print dealt cards in the right color\r\n     * @returns {string}\r\n     */\r\n    get htmlDealtCards(){\r\n        return this.cards.slice(0,this.dealtIndex).map(x => x.html).join(\", \");\r\n    }\r\n\r\n    /**\r\n     * JSON object to store essential properties of the current object\r\n     * @returns {{index: *, class, cards: Array, dealtIndex: number}}\r\n     */\r\n    toJSON(){\r\n        return {\r\n            index: this.index,\r\n            class: this.constructor.name,\r\n            cards: this.cards.map(x => x.toJSON()),\r\n            dealtIndex: this.dealtIndex\r\n        }\r\n    }\r\n}\r\n",
+    "static": true,
+    "longname": "src/model/Deck.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 62,
+    "kind": "class",
+    "name": "Deck",
+    "memberof": "src/model/Deck.js",
+    "static": true,
+    "longname": "src/model/Deck.js~Deck",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/model/Deck.js",
+    "importStyle": "{Deck}",
+    "description": "A class that models a deck of cards",
+    "lineNumber": 6,
+    "interface": false
+  },
+  {
+    "__docId__": 63,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/model/Deck.js~Deck",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#constructor",
+    "access": null,
+    "description": "Create a new deck",
+    "lineNumber": 11,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "index",
+        "description": "card deck index (relevant for games with many decks)"
+      }
+    ]
+  },
+  {
+    "__docId__": 64,
+    "kind": "member",
+    "name": "index",
+    "memberof": "src/model/Deck.js~Deck",
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#index",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "method",
+    "name": "reset",
+    "memberof": "src/model/Deck.js~Deck",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#reset",
+    "access": null,
+    "description": "Instantiate a new shuffled deck",
+    "lineNumber": 19,
+    "params": []
+  },
+  {
+    "__docId__": 66,
+    "kind": "member",
+    "name": "cards",
+    "memberof": "src/model/Deck.js~Deck",
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#cards",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "member",
+    "name": "dealtIndex",
+    "memberof": "src/model/Deck.js~Deck",
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#dealtIndex",
+    "access": null,
+    "description": null,
+    "lineNumber": 28,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 68,
+    "kind": "method",
+    "name": "shuffle",
+    "memberof": "src/model/Deck.js~Deck",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#shuffle",
+    "access": null,
+    "description": "Shuffle the deck",
+    "lineNumber": 34,
+    "params": []
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "name": "dealCard",
+    "memberof": "src/model/Deck.js~Deck",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#dealCard",
+    "access": null,
+    "description": "Deal a card from the current deck",
+    "lineNumber": 47,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Card}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Card"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "get",
+    "name": "htmlCards",
+    "memberof": "src/model/Deck.js~Deck",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#htmlCards",
+    "access": null,
+    "description": "Print cards in the deck in the right color",
+    "lineNumber": 60,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 71,
+    "kind": "get",
+    "name": "htmlDealtCards",
+    "memberof": "src/model/Deck.js~Deck",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#htmlDealtCards",
+    "access": null,
+    "description": "Print dealt cards in the right color",
+    "lineNumber": 68,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 72,
+    "kind": "method",
+    "name": "toJSON",
+    "memberof": "src/model/Deck.js~Deck",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Deck.js~Deck#toJSON",
+    "access": null,
+    "description": "JSON object to store essential properties of the current object",
+    "lineNumber": 76,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{{index: *, class, cards: Array, dealtIndex: number}}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "{index: *, class, cards: Array, dealtIndex: number}"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "file",
+    "name": "src/model/Game.js",
+    "content": "import {Deck} from './Deck.js';\r\nimport {BankHand} from './BankHand.js';\r\n\r\nexport class Game{\r\n    /**\r\n     * Create new game\r\n     * @param id - identifier of the game\r\n     */\r\n    constructor(id = 1){\r\n        this.id = id;\r\n        this.deck = new Deck();\r\n        this.bank = new BankHand();\r\n        this.players = [];\r\n    }\r\n\r\n    /**\r\n     * Add a player to the game\r\n     * @param player\r\n     */\r\n    addPlayer(player){\r\n        this.players.push(player);\r\n    }\r\n\r\n    /**\r\n     * Reset all fields to restart the game\r\n     */\r\n    reset(){\r\n        this.deck.reset();\r\n        this.bank = new BankHand();\r\n        for (let player of this.players){\r\n            player.reset();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Deal cards to all players\r\n     */\r\n    dealInitial(){\r\n        if (!this.isNew){ this.reset(); }\r\n        for (let player of this.players){\r\n            let card = this.deck.dealCard();\r\n            player.hands[0].addCard(card);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Deal a card (on request)\r\n     * @returns {Card}\r\n     */\r\n    dealCard(){\r\n        return this.deck.dealCard();\r\n    }\r\n\r\n    /**\r\n     * Compare player scores to define winners\r\n     * @returns {Array}\r\n     */\r\n    get winners(){\r\n        let winners = [];\r\n        if (this.bank.isBust){\r\n            winners = this.players.filter(x => x.isStand);\r\n        } else {\r\n            winners = this.players.filter(x => (!x.isBust && x.getScore() > this.bank.getScore()));\r\n        }\r\n        return winners;\r\n    }\r\n\r\n    /**\r\n     * Indicates that game fields are set for a new game\r\n     * @returns {boolean}\r\n     */\r\n    get isNew(){\r\n        return this.deck.dealtIndex === 0;\r\n    }\r\n\r\n    /**\r\n     * Indicates that the game is finished (all players and the bank are ready)\r\n     * @returns {boolean}\r\n     */\r\n    get isFinished(){\r\n        return this.bank.isBust || (this.allPlayersReady && this.bank.isReady) || this.allPlayersBust;\r\n    }\r\n\r\n    /**\r\n     * Indicates whether all players finished playing the game\r\n     * @returns {boolean}\r\n     */\r\n    get allPlayersReady(){\r\n        return (this.players.length > 0) && (this.players.filter(x => !x.isReady).length === 0);\r\n    }\r\n\r\n    /**\r\n     * Indicates whether all players are bust\r\n     * @returns {boolean}\r\n     */\r\n    get allPlayersBust(){\r\n        return (this.players.length > 0) && (this.players.filter(x => !x.isBust).length === 0);\r\n    }\r\n\r\n    /**\r\n     * Indicates that the game can start (there is at least one player and game fields are reset)\r\n     * @returns {boolean}\r\n     */\r\n    get isReadyToStart(){\r\n        return (this.isNew || this.isFinished) && (this.players.length > 0);\r\n    }\r\n\r\n    /**\r\n     * Property that provides address of this object\r\n     * @returns {{id: *, class}}\r\n     */\r\n    get address(){\r\n        return {id: this.id, class: this.constructor.name};\r\n    }\r\n\r\n    /**\r\n     * Print game winner names\r\n     * @returns {string}\r\n     */\r\n    printWinners(){\r\n        let winners = this.winners;\r\n        return (winners.length > 0)\r\n            ? this.winners.map(x => x.name).join(\", \")\r\n            : this.bank.isBust\r\n                ? \"No winners!\"\r\n                : \"Bank wins!\";\r\n    }\r\n\r\n    /**\r\n     *  JSON object to store essential properties of the current object\r\n     * @returns {{id: (number|*), class, deck: {id: *, class, cards: Array, dealtIndex: number}, bank: {id: *, class, name: *, hands: Array}, players: Array}}\r\n     */\r\n    toJSON(){\r\n        return {\r\n            id: this.id,\r\n            class: this.constructor.name,\r\n            deck: this.deck.toJSON(),\r\n            bank: this.bank.toJSON(),\r\n            players: this.players.map(x => x.toJSON())\r\n        }\r\n    }\r\n}\r\n",
+    "static": true,
+    "longname": "src/model/Game.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 74,
+    "kind": "class",
+    "name": "Game",
+    "memberof": "src/model/Game.js",
+    "static": true,
+    "longname": "src/model/Game.js~Game",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/model/Game.js",
+    "importStyle": "{Game}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 75,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#constructor",
+    "access": null,
+    "description": "Create new game",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "id",
+        "description": "identifier of the game"
+      }
+    ]
+  },
+  {
+    "__docId__": 76,
+    "kind": "member",
+    "name": "id",
+    "memberof": "src/model/Game.js~Game",
+    "static": false,
+    "longname": "src/model/Game.js~Game#id",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "member",
+    "name": "deck",
+    "memberof": "src/model/Game.js~Game",
+    "static": false,
+    "longname": "src/model/Game.js~Game#deck",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "member",
+    "name": "bank",
+    "memberof": "src/model/Game.js~Game",
+    "static": false,
+    "longname": "src/model/Game.js~Game#bank",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "member",
+    "name": "players",
+    "memberof": "src/model/Game.js~Game",
+    "static": false,
+    "longname": "src/model/Game.js~Game#players",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 80,
+    "kind": "method",
+    "name": "addPlayer",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#addPlayer",
+    "access": null,
+    "description": "Add a player to the game",
+    "lineNumber": 20,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "player",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 81,
+    "kind": "method",
+    "name": "reset",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#reset",
+    "access": null,
+    "description": "Reset all fields to restart the game",
+    "lineNumber": 27,
+    "params": []
+  },
+  {
+    "__docId__": 82,
+    "kind": "member",
+    "name": "bank",
+    "memberof": "src/model/Game.js~Game",
+    "static": false,
+    "longname": "src/model/Game.js~Game#bank",
+    "access": null,
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "method",
+    "name": "dealInitial",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#dealInitial",
+    "access": null,
+    "description": "Deal cards to all players",
+    "lineNumber": 38,
+    "params": []
+  },
+  {
+    "__docId__": 84,
+    "kind": "method",
+    "name": "dealCard",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#dealCard",
+    "access": null,
+    "description": "Deal a card (on request)",
+    "lineNumber": 50,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Card}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Card"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 85,
+    "kind": "get",
+    "name": "winners",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#winners",
+    "access": null,
+    "description": "Compare player scores to define winners",
+    "lineNumber": 58,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Array}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 86,
+    "kind": "get",
+    "name": "isNew",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#isNew",
+    "access": null,
+    "description": "Indicates that game fields are set for a new game",
+    "lineNumber": 72,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 87,
+    "kind": "get",
+    "name": "isFinished",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#isFinished",
+    "access": null,
+    "description": "Indicates that the game is finished (all players and the bank are ready)",
+    "lineNumber": 80,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 88,
+    "kind": "get",
+    "name": "allPlayersReady",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#allPlayersReady",
+    "access": null,
+    "description": "Indicates whether all players finished playing the game",
+    "lineNumber": 88,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 89,
+    "kind": "get",
+    "name": "allPlayersBust",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#allPlayersBust",
+    "access": null,
+    "description": "Indicates whether all players are bust",
+    "lineNumber": 96,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 90,
+    "kind": "get",
+    "name": "isReadyToStart",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#isReadyToStart",
+    "access": null,
+    "description": "Indicates that the game can start (there is at least one player and game fields are reset)",
+    "lineNumber": 104,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 91,
+    "kind": "get",
+    "name": "address",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#address",
+    "access": null,
+    "description": "Property that provides address of this object",
+    "lineNumber": 112,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{{id: *, class}}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "{id: *, class}"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "{\"id\": *, \"class\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 92,
+    "kind": "method",
+    "name": "printWinners",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#printWinners",
+    "access": null,
+    "description": "Print game winner names",
+    "lineNumber": 120,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{string}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 93,
+    "kind": "method",
+    "name": "toJSON",
+    "memberof": "src/model/Game.js~Game",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Game.js~Game#toJSON",
+    "access": null,
+    "description": " JSON object to store essential properties of the current object",
+    "lineNumber": 133,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{{id: (number|*), class, deck: {id: *, class, cards: Array, dealtIndex: number}, bank: {id: *, class, name: *, hands: Array}, players: Array}}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "{id: (number|*), class, deck: {id: *, class, cards: Array, dealtIndex: number}, bank: {id: *, class, name: *, hands: Array}, players: Array}"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 94,
+    "kind": "file",
+    "name": "src/model/Hand.js",
+    "content": "import {Command} from './Command';\r\nimport {BankHand} from './BankHand';\r\n\r\nexport class Hand extends BankHand{\r\n    /**\r\n     * Create a new hand\r\n     */\r\n    constructor(options = {}){\r\n        super();\r\n        this.parentHand  = options.parentHand;\r\n        this.parentIndex = options.parentIndex;\r\n        this.index       = (options.index)? options.index: 0;\r\n    }\r\n\r\n    /**\r\n     * Indicates whether a player can split the hand\r\n     * @returns {boolean}\r\n     */\r\n    get canSplit(){\r\n        let n = this.cards.length;\r\n        return !this.isReady && ((n >= 2) && this.cards[n - 1].value === this.cards[n - 2].value);\r\n    }\r\n\r\n    /**\r\n     * Indicates whether the current hand is allowed to hit\r\n     * @returns {boolean}\r\n     */\r\n    get canHit(){\r\n        return !this.isReady && (this.cards.length > 0);\r\n    }\r\n\r\n    /**\r\n     * Indicates whether the current hand is allowed to stand (the game has started and the player is not ready)\r\n     * @returns {boolean}\r\n     */\r\n    get canStand(){\r\n        return !this.isReady && (this.cards.length > 0);\r\n    }\r\n\r\n    /**\r\n     * Indicates whether the hand must stand\r\n     * @returns {boolean}\r\n     */\r\n    get mustStand(){\r\n        return false;\r\n    }\r\n\r\n    /**\r\n     * Indicates whether the hand must hit\r\n     * @returns {boolean}\r\n     */\r\n    get mustHit(){\r\n        return false;\r\n    }\r\n\r\n    /**\r\n     * Compute overall score as sum of all cards in the hand\r\n     * @param lastIndex - indicates the index in the parent hand before splitting\r\n     * @returns {number} hand score\r\n     */\r\n    getScore(lastIndex = -1) {\r\n        let score = 0;\r\n        if (this.parentHand){\r\n            score += this.parentHand.getScore(this.parentIndex);\r\n        }\r\n\r\n        let tail = (lastIndex >= 0)? this.cards.slice(0, lastIndex): this.cards;\r\n        score += tail.reduce((score, card) => score + card.score, 0);\r\n\r\n        // Reduce each Ace score from 11 to 1 if necessary\r\n        tail.filter(c => c.value === 'A').forEach(c => {\r\n            if (score > 21) { score -= 10; }\r\n        });\r\n\r\n        return score;\r\n    }\r\n\r\n    /**\r\n     * Remove last card from the card stack\r\n     * @returns {*}\r\n     */\r\n    removeLastCard(){\r\n        return this.cards.pop();\r\n    }\r\n\r\n    /**\r\n     * Remove last command from teh command stack\r\n     * @returns {*}\r\n     */\r\n    removeLastCommand(){\r\n        return this.commands.pop();\r\n    }\r\n\r\n    /**\r\n     * JSON object to store essential properties of the current object\r\n     */\r\n    toJSON(){\r\n        let obj = super.toJSON();\r\n        obj.parentHand  = this.parentHand? this.parentHand.toJSON(): null;\r\n        obj.parentIndex = this.parentIndex;\r\n        obj.class       = this.constructor.name;\r\n        obj.index       = this.index;\r\n        return obj;\r\n    }\r\n\r\n}",
+    "static": true,
+    "longname": "src/model/Hand.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 95,
+    "kind": "class",
+    "name": "Hand",
+    "memberof": "src/model/Hand.js",
+    "static": true,
+    "longname": "src/model/Hand.js~Hand",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/model/Hand.js",
+    "importStyle": "{Hand}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "src/model/BankHand.js~BankHand"
+    ]
+  },
+  {
+    "__docId__": 96,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#constructor",
+    "access": null,
+    "description": "Create a new hand",
+    "lineNumber": 8,
+    "params": [
+      {
+        "name": "options",
+        "optional": true,
+        "types": [
+          "{}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ]
+  },
+  {
+    "__docId__": 97,
+    "kind": "member",
+    "name": "parentHand",
+    "memberof": "src/model/Hand.js~Hand",
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#parentHand",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 98,
+    "kind": "member",
+    "name": "parentIndex",
+    "memberof": "src/model/Hand.js~Hand",
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#parentIndex",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 99,
+    "kind": "member",
+    "name": "index",
+    "memberof": "src/model/Hand.js~Hand",
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#index",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 100,
+    "kind": "get",
+    "name": "canSplit",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#canSplit",
+    "access": null,
+    "description": "Indicates whether a player can split the hand",
+    "lineNumber": 19,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 101,
+    "kind": "get",
+    "name": "canHit",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#canHit",
+    "access": null,
+    "description": "Indicates whether the current hand is allowed to hit",
+    "lineNumber": 28,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 102,
+    "kind": "get",
+    "name": "canStand",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#canStand",
+    "access": null,
+    "description": "Indicates whether the current hand is allowed to stand (the game has started and the player is not ready)",
+    "lineNumber": 36,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 103,
+    "kind": "get",
+    "name": "mustStand",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#mustStand",
+    "access": null,
+    "description": "Indicates whether the hand must stand",
+    "lineNumber": 44,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    }
+  },
+  {
+    "__docId__": 104,
+    "kind": "get",
+    "name": "mustHit",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#mustHit",
+    "access": null,
+    "description": "Indicates whether the hand must hit",
+    "lineNumber": 52,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    }
+  },
+  {
+    "__docId__": 105,
+    "kind": "method",
+    "name": "getScore",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#getScore",
+    "access": null,
+    "description": "Compute overall score as sum of all cards in the hand",
+    "lineNumber": 61,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{number} hand score"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "lastIndex",
+        "description": "indicates the index in the parent hand before splitting"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "hand score"
+    }
+  },
+  {
+    "__docId__": 106,
+    "kind": "method",
+    "name": "removeLastCard",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#removeLastCard",
+    "access": null,
+    "description": "Remove last card from the card stack",
+    "lineNumber": 82,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 107,
+    "kind": "method",
+    "name": "removeLastCommand",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#removeLastCommand",
+    "access": null,
+    "description": "Remove last command from teh command stack",
+    "lineNumber": 90,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 108,
+    "kind": "method",
+    "name": "toJSON",
+    "memberof": "src/model/Hand.js~Hand",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Hand.js~Hand#toJSON",
+    "access": null,
+    "description": "JSON object to store essential properties of the current object",
+    "lineNumber": 97,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 109,
+    "kind": "file",
+    "name": "src/model/Player.js",
+    "content": "import {Hand} from './Hand.js';\r\n\r\nexport class Player{\r\n    /**\r\n     * Creates a player\r\n     * @param name\r\n     * @param game\r\n     */\r\n    constructor(name, game){\r\n        this.id = 0;\r\n        this.name = name;\r\n        this.game = game;\r\n        this.reset();\r\n    }\r\n\r\n    /**\r\n     * Defines whether the player is ready (finished or lost the game)\r\n     * @returns {boolean}\r\n     */\r\n    get isReady(){\r\n        return this.hands.filter(h => !h.isReady).length === 0;\r\n    }\r\n\r\n    /**\r\n     * Defines whether the player is bust (lost the game)\r\n     * @returns {boolean}\r\n     */\r\n    get isBust(){\r\n        return this.hands.filter(h => h.isBust).length===this.hands.length;\r\n    }\r\n\r\n    /**\r\n     * Defines whether the player is stand (finished the game)\r\n     * @returns {boolean}\r\n     */\r\n    get isStand(){\r\n        return this.hands.filter(h => h.isStand).length > 0;\r\n    }\r\n\r\n    /**\r\n     * PLayer's best score in the game among all hands\r\n     * @returns {*}\r\n     */\r\n    getScore(){\r\n        return this.hands.map(h => h.getScore()).filter(a => a <= 21).reduce((a, b) => Math.max(a,b), 0);\r\n    }\r\n\r\n    /**\r\n     * Clean player's hands for a new game\r\n     * @param options\r\n     */\r\n    reset(){\r\n        this.hands = [new Hand()];\r\n    }\r\n\r\n    /**\r\n     * Property that provides address of this object\r\n     * @returns {{id: *, class}}\r\n     */\r\n    get address(){\r\n        return {id: this.id, class: this.constructor.name};\r\n    }\r\n\r\n    /**\r\n     * Add a new hand to this player\r\n     * @param hand\r\n     */\r\n    addHand(hand){\r\n        this.hands.push(hand);\r\n    }\r\n\r\n     /**\r\n     * Split a given hand\r\n     * @param hand - a hand to split\r\n     */\r\n    split(hand){\r\n        let card = hand.removeLastCard();\r\n        let command = hand.removeLastCommand();\r\n        let newHand = new Hand({index: this.hands.length, parentHand: hand, parentIndex: hand.cards.length - 1});\r\n        newHand.addCard(card);\r\n        newHand.addCommand(command);\r\n        this.addHand(newHand);\r\n        console.log(\"New hand\", newHand);\r\n    }\r\n\r\n    /**\r\n     * JSON object to store essential properties of the current object\r\n     * @returns {{id: *, class, name: *, hands: Array}}\r\n     */\r\n    toJSON() {\r\n        return {\r\n            id: this.id,\r\n            class: this.constructor.name,\r\n            name: this.name,\r\n            hands: this.hands.map(x => x.toJSON())\r\n        };\r\n    }\r\n}\r\n\r\n",
+    "static": true,
+    "longname": "src/model/Player.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 110,
+    "kind": "class",
+    "name": "Player",
+    "memberof": "src/model/Player.js",
+    "static": true,
+    "longname": "src/model/Player.js~Player",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/model/Player.js",
+    "importStyle": "{Player}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 111,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#constructor",
+    "access": null,
+    "description": "Creates a player",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "game",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 112,
+    "kind": "member",
+    "name": "id",
+    "memberof": "src/model/Player.js~Player",
+    "static": false,
+    "longname": "src/model/Player.js~Player#id",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 113,
+    "kind": "member",
+    "name": "name",
+    "memberof": "src/model/Player.js~Player",
+    "static": false,
+    "longname": "src/model/Player.js~Player#name",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 114,
+    "kind": "member",
+    "name": "game",
+    "memberof": "src/model/Player.js~Player",
+    "static": false,
+    "longname": "src/model/Player.js~Player#game",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 115,
+    "kind": "get",
+    "name": "isReady",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#isReady",
+    "access": null,
+    "description": "Defines whether the player is ready (finished or lost the game)",
+    "lineNumber": 20,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 116,
+    "kind": "get",
+    "name": "isBust",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#isBust",
+    "access": null,
+    "description": "Defines whether the player is bust (lost the game)",
+    "lineNumber": 28,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 117,
+    "kind": "get",
+    "name": "isStand",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#isStand",
+    "access": null,
+    "description": "Defines whether the player is stand (finished the game)",
+    "lineNumber": 36,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 118,
+    "kind": "method",
+    "name": "getScore",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#getScore",
+    "access": null,
+    "description": "PLayer's best score in the game among all hands",
+    "lineNumber": 44,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 119,
+    "kind": "method",
+    "name": "reset",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#reset",
+    "access": null,
+    "description": "Clean player's hands for a new game",
+    "lineNumber": 52,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 120,
+    "kind": "member",
+    "name": "hands",
+    "memberof": "src/model/Player.js~Player",
+    "static": false,
+    "longname": "src/model/Player.js~Player#hands",
+    "access": null,
+    "description": null,
+    "lineNumber": 53,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "undefined[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 121,
+    "kind": "get",
+    "name": "address",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#address",
+    "access": null,
+    "description": "Property that provides address of this object",
+    "lineNumber": 60,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{{id: *, class}}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "{id: *, class}"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "{\"id\": *, \"class\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 122,
+    "kind": "method",
+    "name": "addHand",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#addHand",
+    "access": null,
+    "description": "Add a new hand to this player",
+    "lineNumber": 68,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hand",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 123,
+    "kind": "method",
+    "name": "split",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#split",
+    "access": null,
+    "description": "Split a given hand",
+    "lineNumber": 76,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hand",
+        "description": "a hand to split"
+      }
+    ]
+  },
+  {
+    "__docId__": 124,
+    "kind": "method",
+    "name": "toJSON",
+    "memberof": "src/model/Player.js~Player",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/model/Player.js~Player#toJSON",
+    "access": null,
+    "description": "JSON object to store essential properties of the current object",
+    "lineNumber": 90,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{{id: *, class, name: *, hands: Array}}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "{id: *, class, name: *, hands: Array}"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 125,
+    "kind": "file",
+    "name": "src/test-app/app.js",
+    "content": "import {NgModule, Component} from '@angular/core';\r\nimport {BrowserModule} from '@angular/platform-browser';\r\nimport {FormsModule}   from '@angular/forms';\r\n\r\nimport '../libs/rxjs';\r\nimport \"../../node_modules/bootstrap/dist/css/bootstrap.min.css\";\r\n\r\nimport {Game21Module} from '../components/Game21Module.js';\r\nimport {PlayerModule} from '../components/PlayerModule.js';\r\nimport {Player} from '../model/Player.js';\r\n\r\nimport {mockupBackend} from '../mockupBackend';\r\nlet {backend, game} = mockupBackend();\r\n\r\n//Replace simpleMockHandler with ajaxBackend for remote communication\r\nimport ajaxBackend from '../ajaxBackend';\r\n\r\n@Component({\r\n\tselector: 'test-app',\r\n\ttemplate: `\r\n        <div *ngIf=\"game\" class=\"panel\">\r\n            <game21-widget [game]=\"game\"></game21-widget>\r\n            <label class=\"pull-left\">Add player: </label>\r\n            <input class=\"form-control input-control input-control-lg pull-left\"\r\n                   [type]     = \"text\"\r\n                   [disabled] = \"game.players.length >= MAX_PLAYERS\"\r\n                   [(ngModel)]= \"playerName\"/>\r\n            <button type=\"button\" class=\"btn btn-default btn-icon\"\r\n                    [disabled]=\"game.players.length >= MAX_PLAYERS\" (click)=\"_addPlayer()\">\r\n                    <span class=\"glyphicon glyphicon-plus\"></span>\r\n            </button>\r\n        </div>\r\n        <div *ngIf=\"game\" class=\"panel\">\r\n            <div class=\"input-control\" *ngFor=\"let player of players\">\r\n                <player-panel [player]=\"player\" (command)=\"_onCommand($event)\"></player-panel>\r\n            </div>\r\n        </div>\r\n\r\n    `,\r\n    styles: [`\r\n        :host >>> label{\r\n            padding: 6px;\r\n        }\r\n        :host >>> .input-control {\r\n            margin-left: 4px;\r\n            padding: 2px;\r\n            display: inline-block;\r\n            vertical-align:top;\r\n        }\r\n        :host >>> .input-control-lg {\r\n            width: 178px;\r\n        }\r\n        :host >>> .panel-heading{\r\n            padding: 0\r\n        }\r\n        :host >>> .panel-body{\r\n            border: 1px solid #ccc;\r\n        }\r\n        host >>> .state {\r\n            margin-left: 4px;\r\n            padding: 2px;\r\n        }\r\n        :host >>> .status {\r\n            width: 20px;\r\n            height: 20px;\r\n            text-align: center;\r\n            padding: 0;\r\n            border: 2px solid #888;\r\n            -webkit-border-radius: 3px;\r\n            -moz-border-radius: 3px;\r\n            border-radius: 3px;\r\n            -webkit-box-shadow: 1px 1px 1px #ccc;\r\n            -moz-box-shadow: 1px 1px 2px #ccc;\r\n            box-shadow: 1px 1px 2px #ccc;\r\n        }\r\n    `]\r\n})\r\n/**\r\n * The TestComponent component, showing off the nested resource editor!\r\n */\r\nexport class TestApp {\r\n    game        = game;\r\n    playerName  = \"\";\r\n    MAX_PLAYERS = 3;\r\n    players = [];\r\n\r\n    /**\r\n     * Add new player to the game\r\n     * @returns {Promise.<void>}\r\n     * @private\r\n     */\r\n    async _addPlayer(){\r\n        let player = await backend.commit_new(new Player(this.playerName, {game: this.game.address}));\r\n        this.players.push(player);\r\n    }\r\n\r\n    /**\r\n     * Notify game-server about performed action\r\n     * @param command - new command\r\n     * @param hand    - player's hand\r\n     * @param player  - player that performed the command\r\n     * @private\r\n     */\r\n    async _onCommand({command, player, hand}){\r\n        await backend.commit_command(command, player, hand.index);\r\n    }\r\n}\r\n\r\n/**\r\n * The TestAppModule test module, which supplies the _excellent_ TestApp test application!\r\n */\r\n@NgModule({\r\n\timports: [\r\n\t\tBrowserModule,\r\n        FormsModule,\r\n\t\tGame21Module,\r\n        PlayerModule\r\n\t],\r\n\tdeclarations: [\r\n\t\tTestApp\r\n\t],\r\n\tbootstrap: [TestApp],\r\n})\r\nexport class TestAppModule {}\r\n",
+    "static": true,
+    "longname": "src/test-app/app.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 126,
+    "kind": "variable",
+    "name": "backend",
+    "memberof": "src/test-app/app.js",
+    "static": true,
+    "longname": "src/test-app/app.js~backend",
+    "access": null,
+    "export": false,
+    "importPath": "game-21/src/test-app/app.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 127,
+    "kind": "class",
+    "name": "TestApp",
+    "memberof": "src/test-app/app.js",
+    "static": true,
+    "longname": "src/test-app/app.js~TestApp",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/test-app/app.js",
+    "importStyle": "{TestApp}",
+    "description": "The TestComponent component, showing off the nested resource editor!",
+    "lineNumber": 81,
+    "decorators": [
+      {
+        "name": "Component",
+        "arguments": "({\n  selector: 'test-app',\n  template: `\n        <div *ngIf=\"game\" class=\"panel\">\n            <game21-widget [game]=\"game\"></game21-widget>\n            <label class=\"pull-left\">Add player: </label>\n            <input class=\"form-control input-control input-control-lg pull-left\"\n                   [type]     = \"text\"\n                   [disabled] = \"game.players.length >= MAX_PLAYERS\"\n                   [(ngModel)]= \"playerName\"/>\n            <button type=\"button\" class=\"btn btn-default btn-icon\"\n                    [disabled]=\"game.players.length >= MAX_PLAYERS\" (click)=\"_addPlayer()\">\n                    <span class=\"glyphicon glyphicon-plus\"></span>\n            </button>\n        </div>\n        <div *ngIf=\"game\" class=\"panel\">\n            <div class=\"input-control\" *ngFor=\"let player of players\">\n                <player-panel [player]=\"player\" (command)=\"_onCommand($event)\"></player-panel>\n            </div>\n        </div>\n\n    `,\n  styles: [`\n        :host >>> label{\n            padding: 6px;\n        }\n        :host >>> .input-control {\n            margin-left: 4px;\n            padding: 2px;\n            display: inline-block;\n            vertical-align:top;\n        }\n        :host >>> .input-control-lg {\n            width: 178px;\n        }\n        :host >>> .panel-heading{\n            padding: 0\n        }\n        :host >>> .panel-body{\n            border: 1px solid #ccc;\n        }\n        host >>> .state {\n            margin-left: 4px;\n            padding: 2px;\n        }\n        :host >>> .status {\n            width: 20px;\n            height: 20px;\n            text-align: center;\n            padding: 0;\n            border: 2px solid #888;\n            -webkit-border-radius: 3px;\n            -moz-border-radius: 3px;\n            border-radius: 3px;\n            -webkit-box-shadow: 1px 1px 1px #ccc;\n            -moz-box-shadow: 1px 1px 2px #ccc;\n            box-shadow: 1px 1px 2px #ccc;\n        }\n    `]\n})"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 128,
+    "kind": "member",
+    "name": "game",
+    "memberof": "src/test-app/app.js~TestApp",
+    "static": false,
+    "longname": "src/test-app/app.js~TestApp#game",
+    "access": null,
+    "description": null,
+    "lineNumber": 82,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 129,
+    "kind": "member",
+    "name": "playerName",
+    "memberof": "src/test-app/app.js~TestApp",
+    "static": false,
+    "longname": "src/test-app/app.js~TestApp#playerName",
+    "access": null,
+    "description": null,
+    "lineNumber": 83,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 130,
+    "kind": "member",
+    "name": "MAX_PLAYERS",
+    "memberof": "src/test-app/app.js~TestApp",
+    "static": false,
+    "longname": "src/test-app/app.js~TestApp#MAX_PLAYERS",
+    "access": null,
+    "description": null,
+    "lineNumber": 84,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 131,
+    "kind": "member",
+    "name": "players",
+    "memberof": "src/test-app/app.js~TestApp",
+    "static": false,
+    "longname": "src/test-app/app.js~TestApp#players",
+    "access": null,
+    "description": null,
+    "lineNumber": 85,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 132,
+    "kind": "method",
+    "name": "_addPlayer",
+    "memberof": "src/test-app/app.js~TestApp",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "src/test-app/app.js~TestApp#_addPlayer",
+    "access": "private",
+    "description": "Add new player to the game",
+    "lineNumber": 92,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise.<void>}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise.<void>"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 133,
+    "kind": "method",
+    "name": "_onCommand",
+    "memberof": "src/test-app/app.js~TestApp",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "src/test-app/app.js~TestApp#_onCommand",
+    "access": "private",
+    "description": "Notify game-server about performed action",
+    "lineNumber": 104,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "command",
+        "description": "new command"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hand",
+        "description": "player's hand"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "player",
+        "description": "player that performed the command"
+      }
+    ]
+  },
+  {
+    "__docId__": 134,
+    "kind": "class",
+    "name": "TestAppModule",
+    "memberof": "src/test-app/app.js",
+    "static": true,
+    "longname": "src/test-app/app.js~TestAppModule",
+    "access": null,
+    "export": true,
+    "importPath": "game-21/src/test-app/app.js",
+    "importStyle": "{TestAppModule}",
+    "description": "The TestAppModule test module, which supplies the _excellent_ TestApp test application!",
+    "lineNumber": 124,
+    "decorators": [
+      {
+        "name": "NgModule",
+        "arguments": "({\n  imports: [BrowserModule, FormsModule, Game21Module, PlayerModule],\n  declarations: [TestApp],\n  bootstrap: [TestApp]\n})"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 135,
+    "kind": "file",
+    "name": "src/test-app/index.js",
+    "content": "import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';\r\n\r\nimport { TestAppModule } from './app';\r\n\r\nplatformBrowserDynamic().bootstrapModule(TestAppModule);\r\n",
+    "static": true,
+    "longname": "src/test-app/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 137,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 138,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 139,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 140,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 141,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 142,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 143,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 144,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 145,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 146,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 147,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 148,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 149,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 150,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 151,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 152,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 153,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 154,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 155,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 156,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 157,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 158,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 159,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 160,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 161,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 162,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 163,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 164,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 165,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 166,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 167,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 168,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 169,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 170,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 171,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 172,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 173,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 174,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 175,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 176,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 177,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 178,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 179,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 180,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 181,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 182,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 183,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": "",
+    "lineNumber": 193,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 185,
+    "kind": "external",
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 186,
+    "kind": "external",
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 187,
+    "kind": "external",
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 188,
+    "kind": "external",
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 189,
+    "kind": "external",
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 190,
+    "kind": "external",
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 191,
+    "kind": "external",
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 192,
+    "kind": "external",
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "static": true,
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "lineNumber": 34,
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 193,
+    "kind": "testFile",
+    "name": "test/index.spec.js",
+    "content": "import {\r\n\tdescribe,\r\n\tit,\r\n\tbeforeEach,\r\n} from './test.helper';\r\n\r\nimport { Game } from '../src/model/Game';\r\nimport { Card } from '../src/model/Card';\r\n\r\ndescribe('CARD', () => {\r\n    let ace, king, queen, jack, ten, nine, eight, seven, six, five, four, three, two;\r\n\r\n    beforeEach(() => {\r\n        ace   = new Card('A', '♥');\r\n        king  = new Card('K', '♥');\r\n        queen = new Card('Q', '♥');\r\n        jack  = new Card('J', '♥');\r\n        ten   = new Card(10, '♥');\r\n        nine  = new Card( 9, '♥');\r\n        eight = new Card( 8, '♥');\r\n        seven = new Card( 7, '♥');\r\n        six   = new Card( 6, '♥');\r\n        five  = new Card( 5, '♥');\r\n        four  = new Card( 4, '♥');\r\n        three = new Card( 3, '♥');\r\n        two   = new Card( 2, '♥');\r\n    });\r\n\r\n    describe('NEW_GAME', () => {\r\n        it('starts a new game', () => {\r\n            const game = new Game();\r\n            game.deck.should.have.length(52);\r\n        });\r\n    });\r\n});\r\n",
+    "static": true,
+    "longname": "test/index.spec.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 194,
+    "kind": "testDescribe",
+    "name": "describe0",
+    "testId": 0,
+    "memberof": "test/index.spec.js",
+    "testDepth": 0,
+    "static": true,
+    "longname": "test/index.spec.js~describe0",
+    "access": null,
+    "description": "CARD",
+    "lineNumber": 10
+  },
+  {
+    "__docId__": 195,
+    "kind": "testDescribe",
+    "name": "describe1",
+    "testId": 1,
+    "memberof": "test/index.spec.js~describe0",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/index.spec.js~describe0.describe1",
+    "access": null,
+    "description": "NEW_GAME",
+    "lineNumber": 29
+  },
+  {
+    "__docId__": 196,
+    "kind": "testIt",
+    "name": "it2",
+    "testId": 2,
+    "memberof": "test/index.spec.js~describe0.describe1",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/index.spec.js~describe0.describe1.it2",
+    "access": null,
+    "description": "starts a new game",
+    "lineNumber": 30
+  }
+]

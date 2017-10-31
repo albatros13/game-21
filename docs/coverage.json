@@ -1,0 +1,131 @@
+{
+  "coverage": "61.32%",
+  "expectCount": 106,
+  "actualCount": 65,
+  "files": {
+    "src/model/BankHand.js": {
+      "expectCount": 14,
+      "actualCount": 11,
+      "undocumentLines": [
+        3,
+        9,
+        8
+      ]
+    },
+    "src/components/BankHandPanel.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        17,
+        18
+      ]
+    },
+    "src/model/Card.js": {
+      "expectCount": 11,
+      "actualCount": 4,
+      "undocumentLines": [
+        14,
+        10,
+        11,
+        13,
+        2,
+        12,
+        1
+      ]
+    },
+    "src/model/Command.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/components/HandPanel.js": {
+      "expectCount": 4,
+      "actualCount": 1,
+      "undocumentLines": [
+        45,
+        44,
+        43
+      ]
+    },
+    "src/model/Deck.js": {
+      "expectCount": 11,
+      "actualCount": 8,
+      "undocumentLines": [
+        20,
+        28,
+        12
+      ]
+    },
+    "src/model/Game.js": {
+      "expectCount": 19,
+      "actualCount": 14,
+      "undocumentLines": [
+        4,
+        12,
+        11,
+        10,
+        13
+      ]
+    },
+    "src/components/Game21Module.js": {
+      "expectCount": 3,
+      "actualCount": 2,
+      "undocumentLines": [
+        35
+      ]
+    },
+    "src/model/Hand.js": {
+      "expectCount": 14,
+      "actualCount": 10,
+      "undocumentLines": [
+        4,
+        12,
+        10,
+        11
+      ]
+    },
+    "src/test-app/app.js": {
+      "expectCount": 6,
+      "actualCount": 2,
+      "undocumentLines": [
+        84,
+        82,
+        83,
+        85
+      ]
+    },
+    "src/model/Player.js": {
+      "expectCount": 15,
+      "actualCount": 10,
+      "undocumentLines": [
+        3,
+        12,
+        53,
+        10,
+        11
+      ]
+    },
+    "src/components/PlayerModule.js": {
+      "expectCount": 4,
+      "actualCount": 2,
+      "undocumentLines": [
+        29,
+        28
+      ]
+    },
+    "src/ajaxBackend.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/mockupBackend.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        11
+      ]
+    }
+  }
+}
